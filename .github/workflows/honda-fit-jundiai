@@ -1,0 +1,28 @@
+name: honda-fit-jundiai
+
+on:
+  push:
+    paths:
+      - .github/workflows/honda-fit-jundiai.yml
+  workflow_dispatch: 
+  schedule:
+    - cron: '0 5 * * *' 
+
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Check out repo
+        uses: actions/checkout@v2
+      
+      - name: Setup deno
+        uses: denoland/setup-deno@main
+        with:
+          deno-version: v1.x
+
+      - name: Fetch data 
+        uses: githubocto/flat@v2
+        with:
+          http_url: https://sp.olx.com.br/sao-paulo-e-regiao/regiao-de-jundiai/autos-e-pecas/carros-vans-e-utilitarios/honda/fit?gb=2&rs=33
+          downloaded_filename: honda-fit-jundiai-raw.html
+          
