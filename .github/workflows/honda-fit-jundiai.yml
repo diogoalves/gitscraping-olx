@@ -25,5 +25,5 @@ jobs:
         with:
           http_url: https://sp.olx.com.br/sao-paulo-e-regiao/regiao-de-jundiai/autos-e-pecas/carros-vans-e-utilitarios/honda/fit?gb=2&rs=33
           downloaded_filename: honda-fit-jundiai.html
-          postprocess: postprocess.ts
+          postprocess: postprocess.js
           
