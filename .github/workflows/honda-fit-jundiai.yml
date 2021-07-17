@@ -6,7 +6,7 @@ on:
       - .github/workflows/honda-fit-jundiai.yml
   workflow_dispatch: 
   schedule:
-    - cron: '0 5 * * *' 
+    - cron: '0 * * * *' 
 
 jobs:
   scheduled:
@@ -24,5 +24,6 @@ jobs:
         uses: githubocto/flat@v2
         with:
           http_url: https://sp.olx.com.br/sao-paulo-e-regiao/regiao-de-jundiai/autos-e-pecas/carros-vans-e-utilitarios/honda/fit?gb=2&rs=33
-          downloaded_filename: honda-fit-jundiai-raw.html
+          downloaded_filename: honda-fit-jundiai.html
+          postprocess: postprocess.ts
           
