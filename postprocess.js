@@ -20,12 +20,20 @@ try {
         const subtitle = ad.querySelector('span[color="dark"]').textContent;
         const price = ad.querySelector('span[color="graphite"]').textContent;
         
-        await Deno.writeTextFile(output, `${now},${url},${title},${subtitle},${price}
+        // Step 2.1. Follow ad url to get more info
+        const res = await fetch(url);
+        const subdata = await res.text();
+        const subdocument = new DOMParser().parseFromString(subdata, 'text/html');
+        const description = subdocument.querySelectorAll('span[color="dark"][font-weight="400"]')[1].textContent.replace(/(\r\n|\n|\r)/gm," ");
+        const model = subdocument.querySelector('a[href="https://sp.olx.com.br/sao-paulo-e-regiao/regiao-de-jundiai/autos-e-pecas/carros-vans-e-utilitarios/honda/fit"]').textContent
+        const year = subdocument.querySelector('a[href^="https://sp.olx.com.br/sao-paulo-e-regiao/regiao-de-jundiai/autos-e-pecas/carros-vans-e-utilitarios/honda/fit/"]').textContent
+
+        await Deno.writeTextFile(output, `${now},${url},${title},${subtitle},${price},"${description}",${model},${year}
 `, {append: true});
     }
     
     // Step 3: Clean downloaded json
-    //await removeFile(filename)
+    await removeFile(filename)
 
 } catch(error) {
     console.log(error);
