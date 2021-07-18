@@ -25,7 +25,7 @@ try {
     }
     
     // Step 3: Clean downloaded json
-    await removeFile(filename)
+    //await removeFile(filename)
 
 } catch(error) {
     console.log(error);
