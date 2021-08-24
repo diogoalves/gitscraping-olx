@@ -5,8 +5,8 @@ on:
     paths:
       - .github/workflows/honda-fit-jundiai.yml
   workflow_dispatch: 
-  schedule:
-    - cron: '0 * * * *' 
+#  schedule:
+#    - cron: '0 * * * *' 
 
 jobs:
   scheduled:
